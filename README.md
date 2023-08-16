@@ -50,7 +50,9 @@ LeakGuard-Pro is a memory leak detection tool designed to help software develope
 ### **Example**
 
 ```c
-#include <stdio.h>#include <stdlib.h>int main() {
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
     void *memory_leak = malloc(1024);  // This allocation will cause a leak
 
     printf("Hello, LeakGuard-Pro!\n");
