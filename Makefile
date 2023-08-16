@@ -1,17 +1,17 @@
-CC=clang
-CFLAGS=-Wall -g
+CC := clang
+CFLAGS := -Wall -g
+LDFLAGS := -ldl
 
+BINS := leakcount
+SHARED_BINS := memory_shim.so
 
-BINS=leakcount memory_shim.so sctracer
-
-
-all: $(BINS)
+all: $(BINS) $(SHARED_BINS)
 
 %.so: %.c
-	$(CC) $(CFLAGS) -shared -fPIC -o $@ $^ -ldl
+	$(CC) $(CFLAGS) -shared -fPIC -o $@ $^ $(LDFLAGS)
 
 %.out: %.c
-	$(CC) %(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm -f $(BINS)
+	rm -f $(BINS) $(SHARED_BINS)
